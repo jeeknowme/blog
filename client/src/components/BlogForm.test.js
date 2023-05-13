@@ -5,18 +5,18 @@ import React from 'react'
 import BlogForm from './blogForm'
 
 test('<BlogForm /> updates parent state and calls onSubmit', async () => {
-    const createBlog = jest.fn()
-    const user = userEvent.setup()
+  const createBlog = jest.fn()
+  const user = userEvent.setup()
 
-    render(<BlogForm createBlog={createBlog} />)
+  render(<BlogForm createBlog={createBlog} />)
 
-    const input = screen.getByRole('textbox-title')
+  const input = screen.getByRole('textbox-title')
 
-    const sendButton = screen.getByText('Create')
+  const sendButton = screen.getByText('Create')
 
-    await user.type(input, 'testing a form...')
-    await user.click(sendButton)
+  await user.type(input, 'testing a form...')
+  await user.click(sendButton)
 
-    expect(createBlog.mock.calls).toHaveLength(1)
-    expect(createBlog.mock.calls[0][0].title).toBe('testing a form...')
+  expect(createBlog.mock.calls).toHaveLength(1)
+  expect(createBlog.mock.calls[0][0].title).toBe('testing a form...')
 })
